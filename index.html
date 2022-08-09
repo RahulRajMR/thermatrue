@@ -83,7 +83,7 @@
 			requestAnimationFrame(render);
 
 			if (!manualControl) {
-				longitude += 0.1;
+				longitude += 0.0;
 			}
 
 			// limiting latitude from -85 to 85 (cannot point to the sky or under your feet)
@@ -138,7 +138,7 @@
 				panoramasArray[panoramaNumber]
 			);
 		};
-
+		//setscene
 		function SetScene(sceneKey, space) {
 			if (sceneKey === selScene) return;
 			selScene = sceneKey;
