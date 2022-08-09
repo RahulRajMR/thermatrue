@@ -11,6 +11,7 @@
 			height: 100%;
 		}
 	</style>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/three-orbitcontrols@2.110.3/OrbitControls.min.js"></script> -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r69/three.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -20,9 +21,9 @@
 
 <body>
 	<div class="setting">
-		<div class="scene-item" id="meadow_bk" onclick="SetScene('meadow_bk', 0)">indoor</div>
-		<div class="scene-item" id="meadow_ft" onclick="SetScene('meadow_ft', 1)">outdoor</div>
-		<div class="scene-item" id="meadow_up" onclick="SetScene('meadow_up', 2)">indoor2</div>
+		<div class="scene-item" id="meadow_bk" onclick="SetScene('meadow_bk', 0)">Indoor</div>
+		<div class="scene-item" id="meadow_ft" onclick="SetScene('meadow_ft', 1)">Outdoor</div>
+		<div class="scene-item" id="meadow_up" onclick="SetScene('meadow_up', 2)">Indoor2</div>
 		<!-- <div class="scene-item" id="good-life" onclick="SetScene('good-life')">Good Life</div> -->
 	</div>
 	<script>
@@ -39,7 +40,8 @@
 		// panoramas background
 		var panoramasArray = ["meadow_bk.png", "meadow_ft.png", "meadow_up.png"];
 		var panoramaNumber = Math.floor(Math.random() * panoramasArray.length);
-
+		// const controls = new THREE.OrbitControls();
+		// controls.maxPolarAngle = Math.PI/2.1; 
 		// setting up the renderer
 		renderer = new THREE.WebGLRenderer();
 		renderer.setSize(window.innerWidth, window.innerHeight);
@@ -85,10 +87,8 @@
 			if (!manualControl) {
 				longitude += 0.0;
 			}
-
 			// limiting latitude from -85 to 85 (cannot point to the sky or under your feet)
 			latitude = Math.max(-85, Math.min(85, latitude));
-
 			// moving the camera according to current latitude (vertical movement) and longitude (horizontal movement)
 			camera.target.x =
 				500 *
@@ -108,12 +108,9 @@
 		// when the mouse is pressed, we switch to manual control and save current coordinates
 		function onDocumentMouseDown(event) {
 			event.preventDefault();
-
 			manualControl = true;
-
 			savedX = event.clientX;
 			savedY = event.clientY;
-
 			savedLongitude = longitude;
 			savedLatitude = latitude;
 		}
@@ -151,6 +148,7 @@
 
 			loadSphereMaterial(panoramasArray[space]);
 		}
+		
 	</script>
 </body>
 
